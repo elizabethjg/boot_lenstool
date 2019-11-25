@@ -36,7 +36,7 @@ def run_lenstool_parallel(folder,ini,ncores):
             
             total_folders = np.append(total_folders, folder+'_'+str(j))
             
-            lenstool_catalogue = backgx[bootresult[j,:]]
+            lenstool_catalogue = backgx[bootresult[j-ini,:]]
             lenstool_catalogue[:,0] = np.arange(1,len(backgx)+1)
             
             np.savetxt( folder+'_'+str(j)+'/background_galaxies_main.lenstool',lenstool_catalogue,\
