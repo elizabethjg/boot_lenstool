@@ -6,15 +6,15 @@ from multiprocessing import Pool
 from multiprocessing import Process
 import argparse
 
-def run_lenstool_parallel(folder,ini,ncores):
+def run_lenstool(folder):
+      print folder
+      os.chdir(folder)
+      os.system('lenstool hex.par -n')
+      os.system('bayesMap hex.par')
+      os.system('bayesMap.py hex.par')
 
-      def run_lenstool(folder):
-            print folder
-            os.chdir(folder)
-            os.system('lenstool hex.par -n')
-            os.system('bayesMap hex.par')
-            os.system('bayesMap.py hex.par')
-            
+
+def run_lenstool_parallel(folder,ini,ncores):            
       
       backgx = np.loadtxt(folder+'/background_galaxies_main.lenstool')
       
