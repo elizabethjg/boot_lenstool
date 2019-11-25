@@ -35,7 +35,7 @@ module load clemente
 module load gcc/
 module load cfitsio/3.450
 module load gsl/2.5
+source activate py2env
 
 ### Largar el programa
-srun python -u make_boot.py
-        
+srun python -u make_boot.py '/mnt/clemente/lensing/MACSJ0416/boot_lenstool/main' -init 30 -ncores 50
