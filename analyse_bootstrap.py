@@ -1,0 +1,46 @@
+import os as os
+import numpy as np
+from astropy.io import fits
+from astropy.wcs import WCS
+from ang_sep import ang_sep
+from astropy.cosmology import LambdaCDM
+cosmo = LambdaCDM(H0=70, Om0=0.3, Ode0=0.7)
+
+
+def aperture_mass(folder,centre,radius):
+
+      wcs = WCS(folder+'meanmass.fits')
+      mass = fits.open(folder+'meanmass.fits')[0].data.T
+      sn   = fits.open(folder+'snmass.fits')[0].data.T
+      std = fits.open(folder+'stdmass.fits')[0].data.T
+      
+      x = np.arange(mass.shape[0])+0.5
+      y = np.arange(mass.shape[1])+0.5
+      x, y = np.meshgrid(x,y)
+      
+      ra, dec = wcs.all_pix2world(x, y, 1)
+      dra, ddec = ra-centre[0], dec-centre[1]
+      dra  *= 3600.	
+      ddec *= 3600.
+      dist  = ang_sep(centre[0],centre[1],ra,dec).T*3600
+      
+      mask = dist < radius
+      
+      return mass[mask].sum(),std[mask].sum(),np.median(sn[mask])
+
+
+folder = '../main/grid1.0/'
+
+z = 0.397
+dl  = cosmo.angular_diameter_distance(z).value 	# in kpc
+kpcscale = dl*np.deg2rad(1.0/3600.0)*1000.0
+
+r_100 = 100./kpcscale
+r_200
+
+S1c = [64.011542, -24.093647]
+S2c = [64.016187, -24.075967]
+S3c = [64.031547, -24.048917]
+S4c = [64.061442, -24.053878]
+S1p = [64.134196, -24.088425]
+
