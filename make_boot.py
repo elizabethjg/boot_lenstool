@@ -34,7 +34,7 @@ def run_lenstool_parallel(folder,ini,ncores):
             os.system('mkdir '+folder+'_'+str(j))
             os.system('cp -r '+folder+'/* '+folder+'_'+str(j)+'/')
             
-            total_folders = np.append(total_folders, 'main_'+str(j))
+            total_folders = np.append(total_folders, folder+'_'+str(j))
             
             lenstool_catalogue = backgx[bootresult[j,:]]
             lenstool_catalogue[:,0] = np.arange(1,len(backgx)+1)
