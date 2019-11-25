@@ -17,7 +17,7 @@ def run_lenstool_parallel(folder,ini,ncores):
       
       backgx = np.loadtxt(folder+'/background_galaxies_main.lenstool')
       
-      infile = open(folder+'background_galaxies_main.lenstool', 'r')
+      infile = open(folder+'/background_galaxies_main.lenstool', 'r')
       header = infile.readline()[2:-2]
       
       
@@ -57,5 +57,5 @@ if __name__ == '__main__':
       
       print args.folder,args.init,args.ncores
       
-	run_lenstool_parallel(args.folder,args.init,args.ncores)
-
+      run_lenstool_parallel(args.folder,args.init,args.ncores)
+      
