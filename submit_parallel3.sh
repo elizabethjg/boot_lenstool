@@ -15,7 +15,7 @@
 
 ### Hilos por proceso
 ### Poner el mismo valor acá que en OMP_NUM_THREADS/MKL_NUM_THREADS
-#SBATCH --cpus-per-task=30
+#SBATCH --cpus-per-task=40
 
 ### Tiempo de ejecucion. Formato dias-horas:minutos.
 #SBATCH --time 3-0:00
@@ -27,8 +27,8 @@
 . /etc/profile
 
 ### Configurar OpenMP/MKL/etc con la cantidad de cores detectada.
-export OMP_NUM_THREADS=30
-export MKL_NUM_THREADS=30
+export OMP_NUM_THREADS=40
+export MKL_NUM_THREADS=40
 
 ### Cargar los módulos para la tarea
 module load clemente 
