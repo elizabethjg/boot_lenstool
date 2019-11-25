@@ -15,7 +15,7 @@
 
 ### Hilos por proceso
 ### Poner el mismo valor acá que en OMP_NUM_THREADS/MKL_NUM_THREADS
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=30
 
 ### Tiempo de ejecucion. Formato dias-horas:minutos.
 #SBATCH --time 3-0:00
@@ -27,8 +27,8 @@
 . /etc/profile
 
 ### Configurar OpenMP/MKL/etc con la cantidad de cores detectada.
-export OMP_NUM_THREADS=20
-export MKL_NUM_THREADS=20
+export OMP_NUM_THREADS=30
+export MKL_NUM_THREADS=30
 
 ### Cargar los módulos para la tarea
 module load clemente 
@@ -38,4 +38,4 @@ module load gsl/2.5
 source activate py2env
 
 ### Largar el programa
-srun python -u make_boot.py '/mnt/clemente/lensing/MACSJ0416/boot_lenstool/main' -init 80 -ncores 20
+srun python -u make_boot_parallel.py '/mnt/clemente/lensing/MACSJ0416/boot_lenstool/parallel' -init 30 -ncores 30
